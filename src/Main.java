@@ -11,32 +11,62 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // pour tester → petit volume
-        List<Trip> trips = TripFactory.generateTrips(10);
+        List<Trip> trips = TripFactory.generateTrips(50);
 
         Partie1 p1 = new Partie1();
         Partie2 p2 = new Partie2();
         Partie3 p3 = new Partie3();
         Partie4 p4 = new Partie4();
 
-        // Partie 1
-        System.out.println("Long & expensive: " + p1.longAndExpensiveTrips(trips));
-        System.out.println("Bad trips: " + p1.badTrips(trips));
-        System.out.println("Recent trips: " + p1.recentTrips(trips));
+        System.out.println("===== PARTIE 1 =====");
 
-        // Partie 2
-        System.out.println("Count by city: " + p2.countByCity(trips));
-        System.out.println("Revenue by driver: " + p2.revenueByDriver(trips));
-        System.out.println("Avg duration by city: " + p2.avgDurationByCity(trips));
+        List<Trip> longTrips = p1.longAndExpensiveTrips(trips);
+        System.out.println("Long & expensive trips: " + longTrips.size());
 
-        // Partie 3
-        System.out.println("Top 10 expensive: " + p3.top10ExpensiveTrips(trips));
-        System.out.println("Best trip: " + p3.bestTrip(trips));
+        List<Trip> badTrips = p1.badTrips(trips);
+        System.out.println("Bad trips: " + badTrips.size());
 
-        // Partie 4
-        System.out.println("Revenue seq: " + p4.totalRevenueSequential(trips));
-        System.out.println("Revenue parallel: " + p4.totalRevenueParallel(trips));
-        System.out.println("Count city parallel: " + p4.countByCityParallel(trips));
-        System.out.println("Premium trips: " + p4.premiumTripsParallel(trips));
+        List<Trip> recentTrips = p1.recentTrips(trips);
+        System.out.println("Recent trips: " + recentTrips.size());
+
+
+        System.out.println("\n===== PARTIE 2 =====");
+
+        System.out.println("Count by city:");
+        System.out.println(p2.countByCity(trips));
+
+        System.out.println("\nRevenue by driver:");
+        System.out.println(p2.revenueByDriver(trips));
+
+        System.out.println("\nAvg duration by city:");
+        System.out.println(p2.avgDurationByCity(trips));
+
+
+        System.out.println("\n===== PARTIE 3 =====");
+
+        List<Trip> topTrips = p3.top10ExpensiveTrips(trips);
+        System.out.println("Top 10 expensive trips:");
+        topTrips.forEach(trip -> System.out.println(trip));
+
+        System.out.println("\nBest trip:");
+        System.out.println(p3.bestTrip(trips).orElse(null));
+
+
+        System.out.println("\n===== PARTIE 4 =====");
+
+        double seq = p4.totalRevenueSequential(trips);
+        double par = p4.totalRevenueParallel(trips);
+
+        System.out.println("Total revenue sequential: " + seq);
+        System.out.println("Total revenue parallel:   " + par);
+
+        System.out.println("\nCount by city (parallel):");
+        System.out.println(p4.countByCityParallel(trips));
+
+        List<Trip> premium = p4.premiumTripsParallel(trips);
+        System.out.println("\nPremium trips: " + premium.size());
+
+        // afficher juste 3 exemples max
+        premium.stream().limit(3).forEach(System.out::println);
     }
 }
