@@ -18,7 +18,7 @@ public class Main {
         Partie3 p3 = new Partie3();
         Partie4 p4 = new Partie4();
 
-        System.out.println("===== PARTIE 1 =====");
+        System.out.println("PARTIE 1 ");
 
         List<Trip> longTrips = p1.longAndExpensiveTrips(trips);
         System.out.println("Long & expensive trips: " + longTrips.size());
@@ -30,7 +30,7 @@ public class Main {
         System.out.println("Recent trips: " + recentTrips.size());
 
 
-        System.out.println("\n===== PARTIE 2 =====");
+        System.out.println("\nPARTIE 2");
 
         System.out.println("Count by city:");
         System.out.println(p2.countByCity(trips));
@@ -42,7 +42,7 @@ public class Main {
         System.out.println(p2.avgDurationByCity(trips));
 
 
-        System.out.println("\n===== PARTIE 3 =====");
+        System.out.println("\n PARTIE 3 ");
 
         List<Trip> topTrips = p3.top10ExpensiveTrips(trips);
         System.out.println("Top 10 expensive trips:");
@@ -52,7 +52,7 @@ public class Main {
         System.out.println(p3.bestTrip(trips).orElse(null));
 
 
-        System.out.println("\n===== PARTIE 4 =====");
+        System.out.println("\n PARTIE 4");
 
         double seq = p4.totalRevenueSequential(trips);
         double par = p4.totalRevenueParallel(trips);
@@ -66,7 +66,7 @@ public class Main {
         List<Trip> premium = p4.premiumTripsParallel(trips);
         System.out.println("\nPremium trips: " + premium.size());
 
-        // afficher juste 3 exemples max
+        // affiche  3 exemples max
         premium.stream().limit(3).forEach(System.out::println);
     }
 }
