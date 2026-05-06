@@ -8,11 +8,9 @@ import java.util.Optional;
 
 public class Partie3 {
 
-    // comparator par prix
     Comparator<Trip> byPrice = (t1, t2) -> Double.compare(t2.price(), t1.price());
 
-    // comparator par rating
-    Comparator<Trip> byRating = (t1, t2) -> Double.compare(t2.rating(), t1.rating());
+    Comparator<Trip> byRating = (t1, t2) -> Double.compare(t1.rating(), t2.rating());
 
     public List<Trip> top10ExpensiveTrips(List<Trip> trips) {
         return trips.stream()
