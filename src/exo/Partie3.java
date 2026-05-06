@@ -2,18 +2,27 @@ package exo;
 
 import models.Trip;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 public class Partie3 {
 
+    // comparator par prix
+    Comparator<Trip> byPrice = (t1, t2) -> Double.compare(t2.price(), t1.price());
+
+    // comparator par rating
+    Comparator<Trip> byRating = (t1, t2) -> Double.compare(t2.rating(), t1.rating());
+
     public List<Trip> top10ExpensiveTrips(List<Trip> trips) {
-        // coder ici
-        return List.of();
+        return trips.stream()
+                .sorted(byPrice)
+                .limit(10)
+                .toList();
     }
 
     public Optional<Trip> bestTrip(List<Trip> trips) {
-        // coder ici
-        return Optional.empty();
+        return trips.stream()
+                .max(byRating);
     }
 }
